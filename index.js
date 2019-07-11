@@ -42,6 +42,7 @@ app.use(require('./routes/index'));
 app.use(require('./routes/user'));
 app.use(require('./routes/albums'));
 app.use(require('./routes/sharedAlbums'));
+app.use(require('./routes/comments'));
 
 //server is listening
 app.listen(app.get('port'), () =>{

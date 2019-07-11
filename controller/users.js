@@ -2,8 +2,31 @@ const fetch = require('node-fetch');
 const folderPermission = require('../models/folderShares');
 
 
-async function getPost(){
-return await fetch( 'https://jsonplaceholder.typicode.com/posts')
+async function getComments(){
+
+return await fetch( 'https://jsonplaceholder.typicode.com/comments')
+  .then((response)=>{
+    return  response.json();
+  }) 
+  .then(async (post) => {
+     return post;
+  });
+}
+
+async function getCommentsFilter(keysearch){
+
+  var critery = keysearch;
+  console.log('key'+keysearch);
+
+  if (critery.includes('@')) {
+    critery = '?email='+keysearch;
+  }else if(critery.length){
+    critery = '?name='+keysearch;
+  }else{
+    critery = '';
+  }
+  console.log('critery: '+critery);
+return await fetch( 'https://jsonplaceholder.typicode.com/comments'+critery)
   .then((response)=>{
     return  response.json();
   }) 
@@ -71,9 +94,5 @@ console.log('string generated=> '+stringSort);
 
 }
 
-
-
-
-
-module.exports = {getFolderUser,  validateUserToShare, getAlbumByUserId};
+module.exports = {getComments, getCommentsFilter, getFolderUser,  validateUserToShare, getAlbumByUserId};
     

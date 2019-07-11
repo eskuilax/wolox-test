@@ -1,0 +1,24 @@
+<form action="/getCommentsFilter" method="post">
+<div class="row">
+<div class="input-group m-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+  </div>
+  <input id="ip_buscar" name="ip_buscar" type="text" class="form-control" placeholder="Buscar por nombre o correo" aria-label="Username" aria-describedby="basic-addon1">
+  <button type="submit">buscar</button>
+</div>
+</div>
+    <div class="row">
+        {{#each getComments}}
+        <div class="col-md-3">
+            <i class="fas fa-image fa-3x"></i>
+            <blockquote class="blockquote">
+                <p class="mb-0">{{body}}
+                </p>
+                <footer class="blockquote-footer">{{name}}
+                </footer>
+            </blockquote>
+        </div>
+        {{/each}}
+    </div>
+</form>
