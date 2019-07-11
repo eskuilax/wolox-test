@@ -53,7 +53,6 @@ router.post('/shareAlbum', async (req, res) => {
         req.flash('success_msg', 'Compartiste esta carpeta con %s :)', resFetchUsers[0].name);
         res.redirect('/myControlPanel/');
       
-
     } else {
       console.log('the access exist and was updated!')
       const updateAccess = await folderPermission.findOneAndUpdate({ idUser: resFetchUsers[0].id, idAlbum: idAlbum }, {
