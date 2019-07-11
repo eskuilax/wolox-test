@@ -1,0 +1,83 @@
+<form action="/getAlbumFilter" method="post">
+    <input type="hidden" id="idUser" name="idUser" value="{{idUsuario}}">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="form-group mt-2">
+                <div class="input-group">
+                    <p class="h5">Buscar Albumes Compartidos</p>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fas fa-folder"></i></span>
+                    </div>
+                    <select name="SL_myAlbumes" id="SL_myAlbumes" class="custom-select">
+                        {{#each albums as |album|}}
+                        <option id="op_album" {{@index}} value='{{album.id}}'>{{album.title}}</option>
+                        {{/each}}
+
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="checkbox-group required">
+                <div class="form-check form-check-inline">
+                    <p class="font-weight-bold">Permisos:</p>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="chk_read" name="chk_read" value="1">
+                    <label class="form-check-label" for="chk_read">Lectura</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="chk_write" name="chk_write" value="1">
+                    <label class="form-check-label" for="chk_write">Escrituta</label>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="input-group">
+                <button type="submit" id="btn_share" class="btn btn-success btn-block">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            {{#if userFinded}}
+            <table class="table table-striped mt-2">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each userFinded}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{name}}</td>
+                        <td>{{email}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+    {{else}}
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-danger mt-2">No existen albumes para este filtro</p>
+        </div>
+    </div>
+
+    {{/if}}
+</form>
